@@ -1,0 +1,5 @@
+.prettierrc
+node_modules
+.env
+database.db
+.DS_Store
