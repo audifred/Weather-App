@@ -14,16 +14,15 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
+        <div class="col-lg-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
           <h1 id="w-location"></h1>
           <h3 class="text-dark" id="w-desc"></h3>
           <h3 id="w-string"></h3>
           <img id="w-icon" />
           <ul id="w-details" class="lis-group mt-3">
-            <li class="list-group-item" id="summary"></li>
-            <li class="list-group-item" id="temperature"></li>
-            <li class="list-group-item" id="w-feels-like"></li>
-            <li class="list-group-item" id="w-wind"></li>
+            <li class="list-group-item" id="w-humidity"></li>
+            <li class="list-group-item" id="w-visibility"></li>
+            <li class="list-group-item" id="w-wind-speed"></li>
           </ul>
           <hr />
           <button
@@ -81,7 +80,9 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" id="save" class="btn btn-primary">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
