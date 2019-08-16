@@ -17,10 +17,10 @@ app.use(express.json({ limit: '1mb' }));
 // create database and load
 const database = new Datastore('database.db');
 database.loadDatabase();
-// get req for items currently in database
+// get request for items currently in database
 app.get('/api', (request, response) => {
   database.find({}, (err, data) => {
-    response.json();
+    return response.json(data[0]);
   });
 });
 
@@ -56,6 +56,7 @@ app.post('/api', async (request, response) => {
   });
 });
 
+// Get lat lon coordinates from google
 app.get('/coordinates/:citystate', async (request, response) => {
   console.log('getting coordinates...');
   const citystate = request.params.citystate.split(',');
@@ -68,3 +69,5 @@ app.get('/coordinates/:citystate', async (request, response) => {
   const json = await respo.json();
   response.json(json);
 });
+
+app.get('/api', async (request, response) => {});
