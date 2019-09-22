@@ -3,21 +3,20 @@ const Datastore = require('nedb');
 const fetch = require('node-fetch');
 require('dotenv').config();
 
-// init express app
 const app = express();
 const PORT = process.env.PORT || 3000;
-// Designate port
+
 app.listen(PORT, () => {
   console.log(`Listening on Port ${PORT}`);
 });
-// setting static folder
+
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
 
-// create database and load
+// Load database
 const database = new Datastore('database.db');
 database.loadDatabase();
-// get request for items currently in database
+
 app.get('/api', (request, response) => {
   database.find({}, (err, data) => {
     return response.json(data[0]);
@@ -37,7 +36,6 @@ app.get('/weather/:latlon', async (request, response) => {
   response.json(json);
 });
 
-// posting new data to db
 app.post('/api', async (request, response) => {
   const data = request.body;
   const timestamp = new Date();
@@ -45,7 +43,7 @@ app.post('/api', async (request, response) => {
 
   const fTime = timestamp.toLocaleString;
   database.insert(data);
-  // parameters to be sent to db
+
   response.json({
     status: 'success',
     time: fTime,
@@ -56,7 +54,6 @@ app.post('/api', async (request, response) => {
   });
 });
 
-// Get lat lon coordinates from google
 app.get('/coordinates/:citystate', async (request, response) => {
   console.log('getting coordinates...');
   const citystate = request.params.citystate.split(',');
